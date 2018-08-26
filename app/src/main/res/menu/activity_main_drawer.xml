@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_childDetails"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Add Child Details" />
+        <item
+            android:id="@+id/nav_doctor"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Add Doctor" />
+        <item
+            android:id="@+id/nav_CallDoctor"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Call Doctor" />
+
+        <item
+            android:id="@+id/nav_vaccineDetails"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Vaccine Details" />
+        <item
+            android:id="@+id/nav_setting"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Settings" />
+
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_star_black_24dp"
+                android:title="Rate" />
+        </menu>
+    </item>
+
+</menu>
