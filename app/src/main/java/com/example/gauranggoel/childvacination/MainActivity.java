@@ -13,12 +13,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    FirebaseAuth firebaseAuth;
+    FirebaseAuth.AuthStateListener authStateListener;
     ListView listView;
     CustomAdapter adapter;
     @Override
@@ -70,6 +79,22 @@ public class MainActivity extends AppCompatActivity
 
         listView.setAdapter(adapter);
 
+
+
+        //acessing User details
+        TextView username = (TextView) findViewById(R.id.userName);
+        TextView useremail = (TextView) findViewById(R.id.emailId);
+        firebaseAuth = FirebaseAuth.getInstance();
+        authStateListener = new Authentication().authStateListener();
+       FirebaseUser user = firebaseAuth.getCurrentUser();
+        if(user!=null) {
+            String name = user.getDisplayName().toString();
+            String email= user.getEmail().toString();
+            Toast.makeText(MainActivity.this, name+"\n"+email, Toast.LENGTH_SHORT).show();
+            username.setText(name);
+            useremail.setText(email);
+        }
+
     }
 
     @Override
@@ -110,10 +135,16 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        /*if (id == R.id.nav_doctor) {
+
+        if (id == R.id.nav_logOut) {
+            FirebaseAuth.getInstance().signOut();
+            firebaseAuth.removeAuthStateListener(authStateListener);
+
+            Intent intent = new Intent(MainActivity.this,Authentication.class);
+            startActivity(intent);
 
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        }/* else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
 

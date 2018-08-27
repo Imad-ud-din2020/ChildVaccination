@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "15887109757",
+    "firebase_url": "https://childvacination-8bc17.firebaseio.com",
+    "project_id": "childvacination-8bc17",
+    "storage_bucket": "childvacination-8bc17.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:15887109757:android:79f512d45c2fa5a8",
+        "android_client_info": {
+          "package_name": "com.example.gauranggoel.childvacination"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "15887109757-5313rk761o9l932tfd5i9spb776l8b22.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gauranggoel.childvacination",
+            "certificate_hash": "1bbc90e8f8e5615d04df484d6e4cf709cf5346e2"
+          }
+        },
+        {
+          "client_id": "15887109757-cbivoukg9e1t9afmfafffi7lhlj3ciqd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiw4_-EnevqVeFe-N7byo4MS-qniunkW8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "15887109757-cbivoukg9e1t9afmfafffi7lhlj3ciqd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
