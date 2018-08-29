@@ -15,12 +15,8 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
@@ -94,6 +90,7 @@ public class MainActivity extends AppCompatActivity
             username.setText(name);
             useremail.setText(email);
         }
+
 
     }
 
