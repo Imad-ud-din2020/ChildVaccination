@@ -1,9 +1,8 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.gauranggoel.childvacination.VaccineDetailDescription"
-    android:orientation="vertical">
+    tools:context="com.example.gauranggoel.childvacination.AddNewVaccine">
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
@@ -16,36 +15,25 @@
 
         <ImageView
             android:layout_width="50dp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:clickable="true"
-            android:id="@+id/Vacinicon_icon"
+            android:id="@+id/icon"
             android:src="@drawable/ic_arrow_back_black_24dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Vaccine Description"
+            android:text="Add Vaccine Details"
             android:gravity="center"
             android:textStyle="bold"
-            android:textSize="25dp"
+            android:textSize="30dp"
             android:id="@+id/id"/>
 
     </android.support.v7.widget.Toolbar>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Vaccine Name"
-        android:textSize="25dp"
-        android:gravity="center"
-        android:id="@+id/vaccineName"
-        android:textColor="@color/colorAccent"/>
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="4dp"
-        android:background="@color/colorAccent"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:id="@+id/vaccineDescription"/>
 
-</LinearLayout>
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/hello_blank_fragment" />
+
+</FrameLayout>

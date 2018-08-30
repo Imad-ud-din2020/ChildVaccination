@@ -6,7 +6,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +29,7 @@ import java.util.List;
 public class ShowingVaccineDetails extends Fragment {
 
 
+    public static final String TAG="showingVaccineDetailis";
     public ShowingVaccineDetails() {
         // Required empty public constructor
     }
@@ -40,6 +43,8 @@ AutoCompleteTextView autoCompleteTextView;
         // Inflate the layout for this fragment
 
         View v =inflater.inflate(R.layout.fragment_showing_vaccine_details, container, false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+
         //getting items in arraylist so that it can be added further
         String name[]=getResources().getStringArray(R.array.vaccine_name);
         al=new ArrayList(Arrays.asList(name));
@@ -61,6 +66,7 @@ AutoCompleteTextView autoCompleteTextView;
                     if(s.equals(al.get(i)))
                         k=i;
                 }
+                Log.d(TAG,"inside autocomplete textview"+k);
 
                 callingFragment(k);
             }
@@ -85,6 +91,9 @@ AutoCompleteTextView autoCompleteTextView;
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 callingFragment(position);
+                Toast.makeText(getActivity().getApplicationContext(), ""+position, Toast.LENGTH_SHORT).show();
+
+                Log.d(TAG,"inside listview"+position);
             }
         });
 
@@ -95,11 +104,13 @@ AutoCompleteTextView autoCompleteTextView;
     void callingFragment(int k){
         VaccineDetailDescription obj = new VaccineDetailDescription();
         Bundle b = new Bundle();
-        b.putString("num",""+k);
+        b.putString("number",String.valueOf(k));
         obj.setArguments(b);
+        Log.d(TAG,"inside calling fragment");
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.vaccineDetails,new VaccineDetailDescription());
+        ft.replace(R.id.vaccineDetails,obj);
+        //ft.addToBackStack("VaccinDetailsDescription");
         ft.commit();
     }
 
