@@ -123,6 +123,18 @@ public class MainActivity extends AppCompatActivity
             return true;
         }*/
 
+        if (id == R.id.action_help) {
+
+        } else if (id == R.id.action_settings) {
+
+        } else if (id == R.id.action_share) {
+
+        }
+        else if (id == R.id.action_rate) {
+
+        } else if (id == R.id.action_feedback) {
+
+       }
         return super.onOptionsItemSelected(item);
     }
 
@@ -132,27 +144,37 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        if (id == R.id.nav_home) {
 
-        if (id == R.id.nav_logOut) {
-            FirebaseAuth.getInstance().signOut();
-            firebaseAuth.removeAuthStateListener(authStateListener);
-
-            Intent intent = new Intent(MainActivity.this,Authentication.class);
+        } else if (id == R.id.nav_addchildDetails) {
+            Intent intent = new Intent(MainActivity.this,AddChildDetails.class);
             startActivity(intent);
 
-            // Handle the camera action
-        }/* else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_doctor) {
 
-        } else if (id == R.id.nav_slideshow) {
+        }
+        else if (id == R.id.nav_CallDoctor) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_vaccineDetails) {
+            Intent intent = new Intent(MainActivity.this,VaccineDetails.class);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_setting) {
 
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 
         }
-*/
+        if (id == R.id.nav_logOut) {
+            FirebaseAuth.getInstance().signOut();
+            firebaseAuth.removeAuthStateListener(authStateListener);
+
+            Intent intent = new Intent(MainActivity.this,Authentication.class);
+            startActivity(intent);
+            finish();
+            // Handle the camera action
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

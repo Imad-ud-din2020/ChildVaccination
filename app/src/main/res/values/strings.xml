@@ -16,8 +16,8 @@
         <item>Hepatitis B</item>
         <item>HPV(Human Papiloma Virus)</item>
         <item>DPT(Diphtheria Pertusis Tetanus)</item>
-        <item></item>
-        <item></item>
+        <item>HiB(Haemophilus Influenzaae Type B)</item>
+        <item>Pneumococcoal</item>
         <item></item>
         <item></item>
         <item></item>
@@ -31,7 +31,7 @@
         Tuberculosis,It causes slight swelling at the injected site. Do not apply any medicine on the swelling area</item>
 
         <item>There are two types  of polio vaccines, the oral polio vaccine and the inactivated polio vaccine. The oral polio vaccine(OPV), also called Sabine Vaccine , is a live attenuated vaccine
-            administered as 2 drops orally usually at birth  and around 6,10 and 14 weeks, and later at 1.5 years and 5 years of age. Under the 'Pulse Polio Immunization Program' is an attempt to eradicate the dieases,
+            administered as 2 drops orally usually at birth  and around 6, 10 and 14 weeks, and later at 1.5 years and 5 years of age. Under the \'Pulse Polio Immunization Program\' is an attempt to eradicate the dieases,
             It is administered in addition, twice a year to all children less than  year of age. Poliomyelitis(Polio), which causes nervous system, causes muscle weakness or paralysis, Given for free in Govt. Hospitals
             upton the age of 5 yrs on Pulse Immunization Day</item>
 
@@ -45,7 +45,7 @@
 
         <item>The DPT(Diphtheria Pertusis Tetanus) vaccine confers immunity against three deadly diseases, diptheria, pertusis or whooping cough and tetanus. It is administered as an intramuscular injection
         into the thigh to all children at 6,10,14 weeks with a booster at 1.5 years of age. The Vaccine is usually replaced with a double antigen DT which contains diptheria and tetanus toxoid at age 5. Tetanus
-        vaccine is repeated at age 5.Tetanus vaccine is repeated at age 10 and 15 years. The TDaP Vaccine, also knowna s DTPa or TDaP that causes fewer side effects compared to the DPT</item>
+        vaccine is repeated at age 5.Tetanus vaccine is repeated at age 10 and 15 years. The TDaP Vaccine, also knowna s DTPa or TDaP that causes fewer side effects compared to the DPT vaccine, is also available</item>
         <item></item>
         <item></item>
         <item></item>
@@ -54,5 +54,8 @@
         <item></item>
 
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
