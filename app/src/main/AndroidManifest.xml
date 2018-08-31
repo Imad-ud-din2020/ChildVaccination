@@ -22,7 +22,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Authentication" />
-        <activity android:name=".VaccineDetails"></activity>
+        <activity android:name=".VaccineDetails" />
+        <activity android:name=".AddDoctorDetail"></activity>
     </application>
 
 </manifest>
