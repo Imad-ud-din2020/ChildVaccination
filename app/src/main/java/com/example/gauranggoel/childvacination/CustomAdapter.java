@@ -28,7 +28,7 @@ public class CustomAdapter extends ArrayAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
 
-//        Toast.makeText(context, ""+position, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, ""+position, Toast.LENGTH_SHORT).show();
         LayoutInflater inflater = context.getLayoutInflater();
 
         View v= inflater.inflate(R.layout.custom_list_view,null);

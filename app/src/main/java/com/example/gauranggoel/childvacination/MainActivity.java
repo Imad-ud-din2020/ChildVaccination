@@ -3,6 +3,8 @@ package com.example.gauranggoel.childvacination;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +31,10 @@ public class MainActivity extends AppCompatActivity
     CustomAdapter adapter;
     public static  DatabaseChildDetails databaseChildDetails;
     public static final String TAG="MAIN";
+    int longClickedPosition=-1;
+    ArrayList<ChildDetails> al ;
+    String[] s;
+    //this detemine => no. of times get view will be called
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,11 +65,12 @@ public class MainActivity extends AppCompatActivity
 
         databaseChildDetails = new DatabaseChildDetails(this);
 
+        al= (ArrayList<ChildDetails>) databaseChildDetails.getAllRecords();
 
-        ArrayList<ChildDetails> al = (ArrayList<ChildDetails>) databaseChildDetails.getAllRecords();
+        Log.d(TAG,"got Object");
         //Toast.makeText(MainActivity.this, ""+al, Toast.LENGTH_SHORT).show();
 
-        String[] s= new String[al.size()];
+       s= new String[al.size()];
 
         for(int i=0;i<s.length;i++)
         {
@@ -80,6 +88,25 @@ public class MainActivity extends AppCompatActivity
 
         listView.setAdapter(adapter);
 
+
+        //event over list view
+
+        //on click
+
+
+        //on long press
+
+        registerForContextMenu(listView);
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+             longClickedPosition=position;
+
+                Log.d(TAG,"context Listener");
+                return false;
+            }
+        });
 
 
         //acessing User details
@@ -99,6 +126,31 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+
+    //context menu options
+
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add("Edit");
+        menu.add("Delete");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if(item.getTitle()=="Delete")
+        {
+            databaseChildDetails.deleteRecord(al.get(longClickedPosition).getId());
+            al.remove(longClickedPosition);
+            listView.removeViewAt(longClickedPosition);
+            adapter.notifyDataSetChanged();
+
+            Log.d(TAG,"delete");
+        }
+        return super.onContextItemSelected(item);
+    }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -108,6 +160,7 @@ public class MainActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -149,24 +202,20 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        Intent intent = null;
         if (id == R.id.nav_home) {
 
         } else if (id == R.id.nav_addchildDetails) {
-            Intent intent = new Intent(MainActivity.this,AddChildDetails.class);
-            startActivity(intent);
+             intent = new Intent(MainActivity.this,AddChildDetails.class);
 
         } else if (id == R.id.nav_doctor) {
-            Intent intent = new Intent(MainActivity.this,AddDoctorDetail.class);
-            startActivity(intent);
-
+             intent = new Intent(MainActivity.this,AddDoctorDetail.class);
         }
         else if (id == R.id.nav_CallDoctor) {
-            Intent intent = new Intent(MainActivity.this,ShowingDoctorDetails.class);
-            startActivity(intent);
+             intent = new Intent(MainActivity.this,ShowingDoctorDetails.class);
 
         } else if (id == R.id.nav_vaccineDetails) {
-            Intent intent = new Intent(MainActivity.this,VaccineDetails.class);
-            startActivity(intent);
+             intent = new Intent(MainActivity.this,VaccineDetails.class);
 
         } else if (id == R.id.nav_setting) {
 
@@ -175,11 +224,17 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
 
         }
+        if(intent!=null)
+        {
+            startActivity(intent);
+
+        }
+
         if (id == R.id.nav_logOut) {
             FirebaseAuth.getInstance().signOut();
             firebaseAuth.removeAuthStateListener(authStateListener);
 
-            Intent intent = new Intent(MainActivity.this,Authentication.class);
+            Intent intent1 = new Intent(MainActivity.this,Authentication.class);
             startActivity(intent);
             finish();
             // Handle the camera action
@@ -188,4 +243,5 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
