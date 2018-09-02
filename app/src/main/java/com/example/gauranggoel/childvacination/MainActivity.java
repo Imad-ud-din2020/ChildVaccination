@@ -151,9 +151,13 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_doctor) {
+            Intent intent = new Intent(MainActivity.this,AddDoctorDetail.class);
+            startActivity(intent);
 
         }
         else if (id == R.id.nav_CallDoctor) {
+            Intent intent = new Intent(MainActivity.this,ShowingDoctorDetails.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_vaccineDetails) {
             Intent intent = new Intent(MainActivity.this,VaccineDetails.class);

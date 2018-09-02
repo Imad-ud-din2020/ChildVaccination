@@ -23,7 +23,8 @@
         </activity>
         <activity android:name=".Authentication" />
         <activity android:name=".VaccineDetails" />
-        <activity android:name=".AddDoctorDetail"></activity>
+        <activity android:name=".AddDoctorDetail" />
+        <activity android:name=".ShowingDoctorDetails"></activity>
     </application>
 
 </manifest>

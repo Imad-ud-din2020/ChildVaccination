@@ -71,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Enter Doctor's Hospital"
-            android:inputType="number"/>
+            />
     </android.support.design.widget.TextInputLayout>
 
 
@@ -81,5 +81,5 @@
         android:layout_marginTop="30dp"
         android:layout_gravity="center"
         android:id="@+id/doc_submit"
-        android:text="Submit"/>
+        android:text="Add"/>
 </LinearLayout>
