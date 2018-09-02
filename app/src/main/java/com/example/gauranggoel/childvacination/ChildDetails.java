@@ -10,8 +10,7 @@ import java.util.ArrayList;
 
 public class ChildDetails {
 
-
-    static ArrayList<ChildDetails> al  = new ArrayList<>();
+    String id;
     String name;
     String email;
     String phone;
@@ -19,6 +18,7 @@ public class ChildDetails {
 
     public ChildDetails() {
     }
+
 
     public ChildDetails(String name, String email, String phone, String dob) {
 
@@ -28,12 +28,20 @@ public class ChildDetails {
         this.dob = dob;
     }
 
-    public static ArrayList<ChildDetails> getAl() {
-        return al;
+    public ChildDetails(String id, String name, String email, String phone, String dob) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.dob = dob;
     }
 
-    public  static void setAl(ArrayList<ChildDetails> al) {
-        ChildDetails.al = al;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

@@ -25,6 +25,7 @@ public class AddChildDetails extends AppCompatActivity {
     int month;
     int day;
     ImageView img,img1;
+    DatabaseChildDetails databaseChildDetails = new DatabaseChildDetails(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,11 +79,9 @@ public class AddChildDetails extends AppCompatActivity {
 
                 if(!name.equals("") && !phone.equals("") && !email.equals("") && email.contains("@") && phone.length()==10)
                 {
-                    ArrayList<ChildDetails> al = ChildDetails.getAl();
                     ChildDetails child = new ChildDetails(name,email,phone,dob);
-                    al.add(child);
+                    databaseChildDetails.addRecord(child);
                     Intent intent = new Intent(AddChildDetails.this,MainActivity.class);
-                    //Toast.makeText(AddChildDetails.this, ""+al, Toast.LENGTH_SHORT).show();
                     Toast.makeText(AddChildDetails.this, "Press Long To Edit Details Of Child", Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                     finish();

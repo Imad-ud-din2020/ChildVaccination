@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity
     FirebaseAuth.AuthStateListener authStateListener;
     ListView listView;
     CustomAdapter adapter;
+    public static  DatabaseChildDetails databaseChildDetails;
+    public static final String TAG="MAIN";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,8 +56,11 @@ public class MainActivity extends AppCompatActivity
 
         //extra
 
-        ArrayList<ChildDetails> al = ChildDetails.getAl();
-        Toast.makeText(MainActivity.this, ""+al, Toast.LENGTH_SHORT).show();
+        databaseChildDetails = new DatabaseChildDetails(this);
+
+
+        ArrayList<ChildDetails> al = (ArrayList<ChildDetails>) databaseChildDetails.getAllRecords();
+        //Toast.makeText(MainActivity.this, ""+al, Toast.LENGTH_SHORT).show();
 
         String[] s= new String[al.size()];
 
