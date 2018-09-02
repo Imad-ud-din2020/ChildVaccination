@@ -70,19 +70,12 @@ public class MainActivity extends AppCompatActivity
         Log.d(TAG,"got Object");
         //Toast.makeText(MainActivity.this, ""+al, Toast.LENGTH_SHORT).show();
 
-       s= new String[al.size()];
-
-        for(int i=0;i<s.length;i++)
-        {
-            s[i]=al.get(i).getName();
-        }
-
 
         //ListView Section
 
         listView = (ListView) findViewById(R.id.listView);
 
-        adapter = new CustomAdapter(this,al,s);
+        adapter = new CustomAdapter(this,al);
 
         adapter.notifyDataSetChanged();
 
@@ -143,7 +136,6 @@ public class MainActivity extends AppCompatActivity
         {
             databaseChildDetails.deleteRecord(al.get(longClickedPosition).getId());
             al.remove(longClickedPosition);
-            listView.removeViewAt(longClickedPosition);
             adapter.notifyDataSetChanged();
 
             Log.d(TAG,"delete");
@@ -157,7 +149,9 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+         //   super.onBackPressed();
+
+            finish();
         }
     }
 

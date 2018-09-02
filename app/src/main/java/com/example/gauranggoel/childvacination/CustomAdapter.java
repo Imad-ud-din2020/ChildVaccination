@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,8 +19,8 @@ public class CustomAdapter extends ArrayAdapter {
     Activity context;
     ArrayList<ChildDetails> al;
 
-    public CustomAdapter( Activity context , ArrayList<ChildDetails> al,String[] s) {
-        super(context, R.layout.custom_list_view,s);
+    public CustomAdapter( Activity context , ArrayList<ChildDetails> al) {
+        super(context, R.layout.custom_list_view,al);
         this.context =context;
         this.al=al;
     }
