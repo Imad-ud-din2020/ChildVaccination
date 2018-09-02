@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.gauranggoel.childvacination.EditChildDetails"
+    android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/HeaderBar"
+            android:background="@android:color/holo_blue_bright"
+            android:elevation="4dp"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="8dp">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/edit_icon"
+                android:src="@drawable/ic_arrow_back_black_24dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Edit Child Details"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="30dp" />
+
+        </android.support.v7.widget.Toolbar>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <EditText
+                android:id="@+id/edit_child_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Enter Name" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <EditText
+                android:id="@+id/edit_child_phone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Enter Phone Number"
+                android:inputType="number"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <EditText
+                android:id="@+id/edit_child_email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Enter Email" />
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Birth Date"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                />
+            <TextView
+                android:id="@+id/edit_child_dob"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint=""
+                android:textSize="20dp"
+                />
+            <ImageView
+                android:layout_width="82dp"
+                android:layout_height="52dp"
+                android:id="@+id/edit_calendar"
+                android:src="@drawable/calendar"
+                />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_child_add"
+            android:text="Edit"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp" />
+
+
+</LinearLayout>

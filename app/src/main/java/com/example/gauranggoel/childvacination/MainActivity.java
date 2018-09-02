@@ -1,5 +1,6 @@
 package com.example.gauranggoel.childvacination;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity
     int longClickedPosition=-1;
     ArrayList<ChildDetails> al ;
     String[] s;
+    public static Activity activity ;
     //this detemine => no. of times get view will be called
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        activity= this;
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +90,12 @@ public class MainActivity extends AppCompatActivity
 
         //on click
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(MainActivity.this, ""+position, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         //on long press
 
@@ -140,6 +150,17 @@ public class MainActivity extends AppCompatActivity
 
             Log.d(TAG,"delete");
         }
+        else  if(item.getTitle()=="Edit")
+        {
+            Intent intent= new Intent(MainActivity.this,EditChildDetails.class);
+            ChildDetails child = al.get(longClickedPosition);
+            intent.putExtra("name",child.getName());
+            intent.putExtra("phone",child.getPhone());
+            intent.putExtra("email",child.getEmail());
+            intent.putExtra("dob",child.getDob());
+            intent.putExtra("position",longClickedPosition);
+            startActivity(intent);
+        }
         return super.onContextItemSelected(item);
     }
 
@@ -149,10 +170,7 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-         //   super.onBackPressed();
-
-           // System.exit(0);
-            finish();
+            super.onBackPressed();
         }
     }
 

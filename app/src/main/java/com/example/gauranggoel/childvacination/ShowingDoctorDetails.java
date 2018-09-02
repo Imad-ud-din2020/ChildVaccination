@@ -37,4 +37,9 @@ public class ShowingDoctorDetails extends AppCompatActivity {
 
         listView.setAdapter(adapter);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

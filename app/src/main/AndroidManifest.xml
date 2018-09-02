@@ -24,7 +24,8 @@
         <activity android:name=".Authentication" />
         <activity android:name=".VaccineDetails" />
         <activity android:name=".AddDoctorDetail" />
-        <activity android:name=".ShowingDoctorDetails"></activity>
+        <activity android:name=".ShowingDoctorDetails" />
+        <activity android:name=".EditChildDetails"></activity>
     </application>
 
 </manifest>
