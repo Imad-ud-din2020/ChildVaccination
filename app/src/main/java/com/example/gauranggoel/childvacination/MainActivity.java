@@ -151,6 +151,7 @@ public class MainActivity extends AppCompatActivity
         } else {
          //   super.onBackPressed();
 
+           // System.exit(0);
             finish();
         }
     }
@@ -229,7 +230,7 @@ public class MainActivity extends AppCompatActivity
             firebaseAuth.removeAuthStateListener(authStateListener);
 
             Intent intent1 = new Intent(MainActivity.this,Authentication.class);
-            startActivity(intent);
+            startActivity(intent1);
             finish();
             // Handle the camera action
         }
