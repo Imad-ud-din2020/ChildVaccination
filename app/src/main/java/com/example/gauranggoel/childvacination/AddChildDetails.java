@@ -142,7 +142,13 @@ public class AddChildDetails extends AppCompatActivity {
         String[] al = getResources().getStringArray(R.array.AtBirth);
         String time="";
 
+
         AddChildDetails addVaccine=new AddChildDetails();
+
+        al=getResources().getStringArray(R.array.AtBirth);
+        time=day+"/"+month+"/"+year;
+        addVaccine.add(Id,al,time);
+
 
         al=getResources().getStringArray(R.array.Week6);
         time=calculateDate(45);

@@ -101,7 +101,7 @@ public class ShowingDoctorDetails extends AppCompatActivity {
         }
         else  if(item.getTitle().equals("Edit"))
         {
-            Intent intent= new Intent(ShowingDoctorDetails.this,EditChildDetails.class);
+            Intent intent= new Intent(ShowingDoctorDetails.this,EditDoctorDetails.class);
             DoctorDetails doctor = arrayList.get(longClickedPosition);
             intent.putExtra("name",doctor.getName());
             intent.putExtra("phone",doctor.getPhone());
