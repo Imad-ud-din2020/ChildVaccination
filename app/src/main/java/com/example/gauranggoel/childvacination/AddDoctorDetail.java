@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class AddDoctorDetail extends AppCompatActivity {
 
     EditText et1,et2,et3;
-    DatabaseDoctorDetails databaseDoctorDetails = new DatabaseDoctorDetails(this);
+    DatabaseDoctorDetails databaseDoctorDetails ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +23,7 @@ public class AddDoctorDetail extends AppCompatActivity {
         et2= (EditText) findViewById(R.id.doc_phone);
         et3= (EditText) findViewById(R.id.doc_hospital);
 
+        databaseDoctorDetails = new DatabaseDoctorDetails(this);
         ImageView img = (ImageView) findViewById(R.id.doc_icon);
         img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,9 +46,9 @@ public class AddDoctorDetail extends AppCompatActivity {
                     if(name.equals(""))
                         et1.setError("Please Enter Name");
                     if(phone.equals("") || phone.length()!=10)
-                        et2.setError("Please Enter Phone number");
+                        et2.setError("Please Enter Correct Phone number");
                     if(hospital.equals(""))
-                        et3.setError("Please Enter Name");
+                        et3.setError("Please Enter Hospital Name");
                 }
                 else{
 
@@ -55,10 +56,12 @@ public class AddDoctorDetail extends AppCompatActivity {
 
                     databaseDoctorDetails.addRecord(doc);
 
-                    ShowingDoctorDetails.activity.finish();
+                   if( ShowingDoctorDetails.activity!=null)
+                       ShowingDoctorDetails.activity.finish();
                     Toast.makeText(AddDoctorDetail.this, "Doctors's Detail Added Successfully", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(AddDoctorDetail.this,ShowingDoctorDetails.class);
                     startActivity(intent);
+                    finish();
                 }
 
 

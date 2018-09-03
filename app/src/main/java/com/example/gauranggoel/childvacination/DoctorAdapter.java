@@ -28,25 +28,25 @@ public class DoctorAdapter extends ArrayAdapter {
         this.arrayList=arrayList;
     }
 
-    @NonNull
     @Override
-    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView( int position,View convertView, ViewGroup parent) {
 
         LayoutInflater layoutInflater = activity.getLayoutInflater();
         View v = layoutInflater.inflate(R.layout.doc_custom_list_view,null);
 
-        TextView textView=v.findViewById(R.id.list_doc_name);
-        TextView textView1=v.findViewById(R.id.list_doc_hospital);
-        Button button = v.findViewById(R.id.list_doc_call);
+        Toast.makeText(activity, "in get View "+position, Toast.LENGTH_SHORT).show();
+        TextView name=v.findViewById(R.id.list_doc_name);
+        TextView hospital=v.findViewById(R.id.list_doc_hospital);
+       // Button button = v.findViewById(R.id.list_doc_call);
 
-        textView.setText(arrayList.get(position).getName());
-        textView1.setText(arrayList.get(position).getHospital());
-        button.setOnClickListener(new View.OnClickListener() {
+        name.setText(arrayList.get(position).getName());
+        hospital.setText(arrayList.get(position).getHospital());
+      /*  button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(activity, ""+position, Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
         return v;
     }
 }

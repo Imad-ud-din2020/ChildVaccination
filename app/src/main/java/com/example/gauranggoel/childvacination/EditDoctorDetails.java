@@ -68,7 +68,9 @@ public class EditDoctorDetails extends AppCompatActivity {
                     doctorDetails.setPhone(phone);
                     doctorDetails.setHospital(hospital);
                     databaseDoctorDetails.updateRecord(doctorDetails);
-                    ShowingDoctorDetails.activity.finish();
+
+                    if(ShowingDoctorDetails.activity!=null)
+                        ShowingDoctorDetails.activity.finish();
                     Intent intent = new Intent(EditDoctorDetails.this,ShowingDoctorDetails.class);
                     startActivity(intent);
                     finish();

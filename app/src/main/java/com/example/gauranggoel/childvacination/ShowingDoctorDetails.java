@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -18,7 +19,7 @@ public class ShowingDoctorDetails extends AppCompatActivity {
 
     ListView listView;
     DoctorAdapter adapter;
-    DatabaseDoctorDetails databaseDoctorDetails=new DatabaseDoctorDetails(this);
+    DatabaseDoctorDetails databaseDoctorDetails;
     public static Activity activity;
     int longClickedPosition=-1;
     ArrayList<DoctorDetails> arrayList;
@@ -29,15 +30,21 @@ public class ShowingDoctorDetails extends AppCompatActivity {
         setContentView(R.layout.activity_showing_doctor_details);
         getSupportActionBar().hide();
         activity=this;
+
+        databaseDoctorDetails=new DatabaseDoctorDetails(this);
+
         arrayList= (ArrayList<DoctorDetails>) databaseDoctorDetails.getAllRecords();
 
         listView= (ListView) findViewById(R.id.doc_list);
+
+        Toast.makeText(activity, ""+arrayList.size(), Toast.LENGTH_SHORT).show();
 
         adapter=new DoctorAdapter(this,arrayList);
 
         adapter.notifyDataSetChanged();
 
         listView.setAdapter(adapter);
+
         registerForContextMenu(listView);
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -96,5 +103,6 @@ public class ShowingDoctorDetails extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        finish();
     }
 }

@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +26,16 @@ public class DatabaseChildDetails extends SQLiteOpenHelper{
     public static final String PHONE="phone";
     public static final String EMAIL="email";
     public static final String DOB="dob";
+    public static final String TAG="ChildDatabase";
+
 
 
 
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
+        Log.d(TAG,"on Create");
 
         String query="create table "+DATABASE_TABLE+" ( "+ ID +" TEXT  PRIMARY KEY , "+ NAME+" TEXT, "+PHONE+" TEXT, "+EMAIL+" TEXT, "+DOB+" TEXT "+ ");";
         db.execSQL(query);
@@ -39,14 +44,21 @@ public class DatabaseChildDetails extends SQLiteOpenHelper{
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+        Log.d(TAG,"on upgrade");
+
         db.execSQL("DROP TABLE IF EXISTS"+DATABASE_TABLE);
         onCreate(db);
     }
     public DatabaseChildDetails(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
+        Log.d(TAG,"constructor");
+
     }
 
     public void addRecord(ChildDetails childDetails){
+
+        Log.d(TAG,"add record");
 
         SQLiteDatabase db=getWritableDatabase();
 
@@ -62,6 +74,9 @@ public class DatabaseChildDetails extends SQLiteOpenHelper{
     }
 
     public void updateRecord(ChildDetails childDetails ){
+
+        Log.d(TAG,"update record");
+
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -79,6 +94,9 @@ public class DatabaseChildDetails extends SQLiteOpenHelper{
 
 
     public List<ChildDetails> getAllRecords(){
+
+
+        Log.d(TAG,"get all records");
 
         SQLiteDatabase db=getReadableDatabase();
 
@@ -115,6 +133,8 @@ public class DatabaseChildDetails extends SQLiteOpenHelper{
 
     public ChildDetails getSingleRecord(String id){
 
+        Log.d(TAG,"get single record");
+
         SQLiteDatabase db = getReadableDatabase();
 
         String query="select * from "+ DATABASE_TABLE + " where " + ID +" = " + id + ";" ;
@@ -132,6 +152,8 @@ public class DatabaseChildDetails extends SQLiteOpenHelper{
 
 
     public void deleteRecord(String id){
+
+        Log.d(TAG,"on delete");
 
         SQLiteDatabase db = getWritableDatabase();
 

@@ -24,13 +24,13 @@ public class EditChildDetails extends AppCompatActivity {
     int month;
     int day;
     ImageView img,img1;
-    DatabaseChildDetails databaseChildDetails = new DatabaseChildDetails(this);
+    DatabaseChildDetails databaseChildDetails;
     Bundle b;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_child_details);
-
+        databaseChildDetails = new DatabaseChildDetails(this);
         et1 = (EditText) findViewById(R.id.edit_child_name);
         et2 = (EditText) findViewById(R.id.edit_child_phone);
         et3 = (EditText) findViewById(R.id.edit_child_email);
@@ -92,7 +92,9 @@ public class EditChildDetails extends AppCompatActivity {
                     child.setEmail(email);
                     child.setDob(dob);
                     databaseChildDetails.updateRecord(child);
-                    MainActivity.activity.finish();
+                    if(  MainActivity.activity!=null)
+                        MainActivity.activity.finish();
+
                     Intent intent = new Intent(EditChildDetails.this,MainActivity.class);
                     startActivity(intent);
                     finish();
