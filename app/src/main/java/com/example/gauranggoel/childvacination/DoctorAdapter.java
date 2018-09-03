@@ -19,11 +19,11 @@ import java.util.ArrayList;
 
 public class DoctorAdapter extends ArrayAdapter {
     Activity activity;
-    ArrayList<DoctorDetailis> arrayList;
+    ArrayList<DoctorDetails> arrayList;
 
-    DoctorAdapter(Activity activity,ArrayList<DoctorDetailis> arrayList,String [] s)
+    DoctorAdapter(Activity activity,ArrayList<DoctorDetails> arrayList)
     {
-        super(activity,R.layout.doc_custom_list_view,s);
+        super(activity,R.layout.doc_custom_list_view,arrayList);
         this.activity=activity;
         this.arrayList=arrayList;
     }

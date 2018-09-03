@@ -9,21 +9,31 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class AddDoctorDetail extends AppCompatActivity {
+import java.util.List;
+
+public class EditDoctorDetails extends AppCompatActivity {
 
     EditText et1,et2,et3;
     DatabaseDoctorDetails databaseDoctorDetails = new DatabaseDoctorDetails(this);
+    Bundle b;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_doctor_detail);
+        setContentView(R.layout.activity_edit_doctor_details);
         getSupportActionBar().hide();
 
-        et1= (EditText) findViewById(R.id.doc_name);
-        et2= (EditText) findViewById(R.id.doc_phone);
-        et3= (EditText) findViewById(R.id.doc_hospital);
+        et1= (EditText) findViewById(R.id.edit_doc_name);
+        et2= (EditText) findViewById(R.id.edit_doc_phone);
+        et3= (EditText) findViewById(R.id.edit_doc_hospital);
 
-        ImageView img = (ImageView) findViewById(R.id.doc_icon);
+        b = getIntent().getExtras();
+
+        et1.setText(b.getString("name"));
+        et2.setText(b.getString("phone"));
+        et3.setText(b.getString("hospital"));
+
+
+        ImageView img = (ImageView) findViewById(R.id.edit_doc_icon);
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,7 +42,7 @@ public class AddDoctorDetail extends AppCompatActivity {
         });
 
 
-        Button btn = (Button) findViewById(R.id.doc_submit);
+        Button btn = (Button) findViewById(R.id.edit_doc_submit);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,14 +61,17 @@ public class AddDoctorDetail extends AppCompatActivity {
                 }
                 else{
 
-                    DoctorDetails doc = new DoctorDetails(name,phone,hospital);
 
-                    databaseDoctorDetails.addRecord(doc);
-
+                    List<DoctorDetails> al= databaseDoctorDetails.getAllRecords();
+                    DoctorDetails doctorDetails = databaseDoctorDetails.getSingleRecord(al.get(b.getInt("position")).getId());
+                    doctorDetails.setName(name);
+                    doctorDetails.setPhone(phone);
+                    doctorDetails.setHospital(hospital);
+                    databaseDoctorDetails.updateRecord(doctorDetails);
                     ShowingDoctorDetails.activity.finish();
-                    Toast.makeText(AddDoctorDetail.this, "Doctors's Detail Added Successfully", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(AddDoctorDetail.this,ShowingDoctorDetails.class);
+                    Intent intent = new Intent(EditDoctorDetails.this,ShowingDoctorDetails.class);
                     startActivity(intent);
+                    finish();
                 }
 
 
@@ -71,6 +84,5 @@ public class AddDoctorDetail extends AppCompatActivity {
         super.onBackPressed();
         finish();
     }
+
 }
-
-

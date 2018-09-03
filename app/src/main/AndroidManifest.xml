@@ -25,7 +25,8 @@
         <activity android:name=".VaccineDetails" />
         <activity android:name=".AddDoctorDetail" />
         <activity android:name=".ShowingDoctorDetails" />
-        <activity android:name=".EditChildDetails"></activity>
+        <activity android:name=".EditChildDetails" />
+        <activity android:name=".EditDoctorDetails"></activity>
     </application>
 
 </manifest>

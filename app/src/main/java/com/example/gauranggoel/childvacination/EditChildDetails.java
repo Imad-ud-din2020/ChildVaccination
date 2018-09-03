@@ -84,6 +84,7 @@ public class EditChildDetails extends AppCompatActivity {
 
                 if(!name.equals("") && !phone.equals("") && !email.equals("") && email.contains("@") && phone.length()==10)
                 {
+
                     List<ChildDetails> al= databaseChildDetails.getAllRecords();
                     ChildDetails child = databaseChildDetails.getSingleRecord(al.get(b.getInt("position")).getId());
                     child.setName(name);
