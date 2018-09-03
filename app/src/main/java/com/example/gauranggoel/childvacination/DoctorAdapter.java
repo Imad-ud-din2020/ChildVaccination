@@ -1,8 +1,13 @@
 package com.example.gauranggoel.childvacination;
 
+import android.*;
 import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,7 +56,25 @@ public class DoctorAdapter extends ArrayAdapter {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(activity, ""+position, Toast.LENGTH_SHORT).show();
+
+               // Toast.makeText(activity, ""+position, Toast.LENGTH_SHORT).show();
+                String s=arrayList.get(position).getPhone();
+                if(s.length()==10)
+                {
+                    if(ActivityCompat.checkSelfPermission(activity, android.Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED)
+                    {
+                        ActivityCompat.requestPermissions(activity,new String[]{android.Manifest.permission.CALL_PHONE},0);
+                        return;
+                    }
+
+                    Intent i = new Intent(Intent.ACTION_DIAL);
+
+                    i.setData(Uri.parse("tel:"+s));
+                    activity.startActivity(i);
+                }
+                else{
+                    Toast.makeText(activity, "Error Occured While Making Call,\n please try Again Later", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         return v;

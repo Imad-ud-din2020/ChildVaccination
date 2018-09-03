@@ -33,17 +33,33 @@ public class ShowingDoctorDetails extends AppCompatActivity {
 
         databaseDoctorDetails=new DatabaseDoctorDetails(this);
 
+
+        Log.d(TAG,"on Create");
+
+        //Floating Action Bar
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_doc_details);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Log.d(TAG,"float action bar");
+                Intent intent = new Intent(ShowingDoctorDetails.this,AddDoctorDetail.class);
+                startActivity(intent);
+
+            }
+        });
+
+
         arrayList= (ArrayList<DoctorDetails>) databaseDoctorDetails.getAllRecords();
 
         listView= (ListView) findViewById(R.id.doc_list_item);
+        Log.d(TAG,"context menu registered");
 
         //Toast.makeText(activity, ""+arrayList.size(), Toast.LENGTH_SHORT).show();
 
         adapter=new DoctorAdapter(this,arrayList);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-
-        registerForContextMenu(listView);
 
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -60,32 +76,26 @@ public class ShowingDoctorDetails extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(ShowingDoctorDetails.this, ""+position, Toast.LENGTH_SHORT).show();
-            }
-        });
 
-
-        //Floating Action Bar
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_doc_details);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ShowingDoctorDetails.this,AddDoctorDetail.class);
-                startActivity(intent);
+                Log.d(TAG,"on item Click");
 
             }
         });
 
+        registerForContextMenu(listView);
 
     }
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         menu.add("Edit");
         menu.add("Delete");
+        Log.d(TAG,"onCreateContextMenu");
     }
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        if(item.getTitle()=="Delete")
+        if(item.getTitle().equals("Delete"))
         {
             databaseDoctorDetails.deleteRecord(arrayList.get(longClickedPosition).getId());
             arrayList.remove(longClickedPosition);
@@ -93,7 +103,7 @@ public class ShowingDoctorDetails extends AppCompatActivity {
 
             Log.d(TAG,"delete");
         }
-        else  if(item.getTitle()=="Edit")
+        else  if(item.getTitle().equals("Edit"))
         {
             Intent intent= new Intent(ShowingDoctorDetails.this,EditChildDetails.class);
             DoctorDetails doctor = arrayList.get(longClickedPosition);
@@ -105,7 +115,6 @@ public class ShowingDoctorDetails extends AppCompatActivity {
         }
         return super.onContextItemSelected(item);
     }
-
 
     @Override
     public void onBackPressed() {
