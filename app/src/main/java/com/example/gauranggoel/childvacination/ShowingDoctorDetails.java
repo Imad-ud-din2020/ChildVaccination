@@ -2,7 +2,10 @@ package com.example.gauranggoel.childvacination;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -84,8 +87,9 @@ public class ShowingDoctorDetails extends AppCompatActivity {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        menu.add("Edit");
+        menu.add("Edit Details");
         menu.add("Delete");
+        menu.add("Call");
         Log.d(TAG,"onCreateContextMenu");
     }
 
@@ -109,6 +113,27 @@ public class ShowingDoctorDetails extends AppCompatActivity {
             intent.putExtra("position",longClickedPosition);
             startActivity(intent);
         }
+        else if(item.getTitle().equals("Call")){
+
+            String s=arrayList.get(longClickedPosition).getPhone();
+            if(s.length()==10)
+            {
+                if(ActivityCompat.checkSelfPermission(activity, android.Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED)
+                {
+                    ActivityCompat.requestPermissions(activity,new String[]{android.Manifest.permission.CALL_PHONE},0);
+                    //return;
+                }
+
+                Intent i = new Intent(Intent.ACTION_DIAL);
+
+                i.setData(Uri.parse("tel:"+s));
+                activity.startActivity(i);
+            }
+            else{
+                Toast.makeText(activity, "Error Occured While Making Call,\n please try Again Later", Toast.LENGTH_SHORT).show();
+            }
+        }
+
         return super.onContextItemSelected(item);
     }
 

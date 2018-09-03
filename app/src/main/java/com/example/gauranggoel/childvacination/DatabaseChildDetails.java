@@ -80,7 +80,8 @@ public class DatabaseChildDetails extends SQLiteOpenHelper{
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(ID,childDetails.getDob()+"/"+childDetails.getName()+"/"+childDetails.getPhone()+"/"+childDetails.getEmail());
+        //contentValues.put(ID,childDetails.getDob()+"/"+childDetails.getName()+"/"+childDetails.getPhone()+"/"+childDetails.getEmail());
+        contentValues.put(ID,childDetails.getId());
         contentValues.put(NAME,childDetails.getName());
         contentValues.put(PHONE,childDetails.getPhone());
         contentValues.put(EMAIL,childDetails.getEmail());

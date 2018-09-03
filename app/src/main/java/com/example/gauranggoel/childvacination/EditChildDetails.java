@@ -1,7 +1,9 @@
 package com.example.gauranggoel.childvacination;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,10 +28,12 @@ public class EditChildDetails extends AppCompatActivity {
     ImageView img,img1;
     DatabaseChildDetails databaseChildDetails;
     Bundle b;
+    AlertDialog.Builder dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_child_details);
+        getSupportActionBar().hide();
         databaseChildDetails = new DatabaseChildDetails(this);
         et1 = (EditText) findViewById(R.id.edit_child_name);
         et2 = (EditText) findViewById(R.id.edit_child_phone);
@@ -105,7 +109,28 @@ public class EditChildDetails extends AppCompatActivity {
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(EditChildDetails.this,date,year,month,day).show();
+
+              //  Toast.makeText(EditChildDetails.this, "inside", Toast.LENGTH_SHORT).show();
+                dialog = new AlertDialog.Builder(EditChildDetails.this);
+                dialog.setTitle("Changing DOB");
+                dialog.setMessage("Change In DOB do not make changes in your Schedule, Better is to create new one and delete this");
+                dialog.setPositiveButton("Ignore", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        new DatePickerDialog(EditChildDetails.this,date,year,month,day).show();
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.setNegativeButton("Go Back", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+                //new DatePickerDialog(EditChildDetails.this,date,year,month,day).show();
             }
         });
         img1.setOnClickListener(new View.OnClickListener() {

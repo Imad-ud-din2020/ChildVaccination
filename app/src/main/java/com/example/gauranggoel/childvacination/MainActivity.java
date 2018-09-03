@@ -2,6 +2,7 @@ package com.example.gauranggoel.childvacination;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
@@ -143,7 +144,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        menu.add("Edit");
+        menu.add("Edit Details");
         menu.add("Delete");
     }
 
@@ -212,7 +213,7 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.action_rate) {
 
         } else if (id == R.id.action_feedback) {
-
+            postQuery();
        }
         return super.onOptionsItemSelected(item);
     }
@@ -265,4 +266,16 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    public void postQuery(){
+        String to[] = {"gauranggoel.9@gmail.com"};
+
+        Intent intent = new Intent(Intent.ACTION_SEND); // send is for sending data -> decide -> to send where
+        intent.setData(Uri.parse("mailto:"+to)); // send to mailing app (dvm understands that -> trannsfer data to mailing app)
+        intent.putExtra(Intent.EXTRA_SUBJECT,"FeedBack");
+        intent.putExtra(Intent.EXTRA_TEXT,"");
+        intent.putExtra(Intent.EXTRA_EMAIL,to);
+        intent.setType("text/message");
+        startActivity(Intent.createChooser(intent,"Email"));
+
+    }
 }
