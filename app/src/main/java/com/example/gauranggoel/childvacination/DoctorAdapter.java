@@ -21,18 +21,19 @@ import java.util.ArrayList;
 public class DoctorAdapter extends ArrayAdapter {
     Activity activity;
     ArrayList<DoctorDetails> arrayList;
-public static final String  TAG="DoctorAdapter";
-    DoctorAdapter(Activity activity,ArrayList<DoctorDetails> arrayList)
+
+    public static final String  TAG="DoctorAdapter";
+    DoctorAdapter(Activity activity,ArrayList<DoctorDetails> arrayList1)
     {
-        super(activity,R.layout.doc_custom_list_view,arrayList);
+        super(activity,R.layout.doc_custom_list_view,arrayList1);
         this.activity=activity;
-        this.arrayList=arrayList;
+        this.arrayList=arrayList1;
 
         Log.d(TAG,"in constructor");
     }
 
     @Override
-    public View getView( int position,View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
 
         Log.d(TAG,"get view");
@@ -40,19 +41,19 @@ public static final String  TAG="DoctorAdapter";
         LayoutInflater layoutInflater = activity.getLayoutInflater();
         View v = layoutInflater.inflate(R.layout.doc_custom_list_view,null);
 
-        Toast.makeText(activity, "in get View "+position, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(activity, "in get View "+position, Toast.LENGTH_SHORT).show();
         TextView name=v.findViewById(R.id.list_doc_name);
         TextView hospital=v.findViewById(R.id.list_doc_hospital);
-       // Button button = v.findViewById(R.id.list_doc_call);
+        Button button = v.findViewById(R.id.list_doc_call);
 
         name.setText(arrayList.get(position).getName());
         hospital.setText(arrayList.get(position).getHospital());
-      /*  button.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(activity, ""+position, Toast.LENGTH_SHORT).show();
             }
-        });*/
+        });
         return v;
     }
 }

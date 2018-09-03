@@ -35,17 +35,16 @@ public class ShowingDoctorDetails extends AppCompatActivity {
 
         arrayList= (ArrayList<DoctorDetails>) databaseDoctorDetails.getAllRecords();
 
-        listView= (ListView) findViewById(R.id.doc_list);
+        listView= (ListView) findViewById(R.id.doc_list_item);
 
-        Toast.makeText(activity, ""+arrayList.size(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(activity, ""+arrayList.size(), Toast.LENGTH_SHORT).show();
 
         adapter=new DoctorAdapter(this,arrayList);
-
+        listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
-        listView.setAdapter(adapter);
-
         registerForContextMenu(listView);
+
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -56,6 +55,14 @@ public class ShowingDoctorDetails extends AppCompatActivity {
                 return false;
             }
         });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(ShowingDoctorDetails.this, ""+position, Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         //Floating Action Bar
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_doc_details);
