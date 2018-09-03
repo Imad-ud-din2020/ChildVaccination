@@ -206,7 +206,8 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_help) {
 
         } else if (id == R.id.action_settings) {
-
+            Intent intent = new Intent(MainActivity.this,SettingActivity.class);
+            startActivity(intent);
         } else if (id == R.id.action_share) {
 
         }
@@ -240,6 +241,7 @@ public class MainActivity extends AppCompatActivity
              intent = new Intent(MainActivity.this,VaccineDetails.class);
 
         } else if (id == R.id.nav_setting) {
+            intent = new Intent(MainActivity.this,SettingActivity.class);
 
         } else if (id == R.id.nav_share) {
 
