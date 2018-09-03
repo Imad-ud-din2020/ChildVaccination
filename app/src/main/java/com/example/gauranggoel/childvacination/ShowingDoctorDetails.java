@@ -24,13 +24,11 @@ public class ShowingDoctorDetails extends AppCompatActivity {
     int longClickedPosition=-1;
     ArrayList<DoctorDetails> arrayList;
     public static final String TAG="ShowingDoctorDetails";
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_showing_doctor_details);
         getSupportActionBar().hide();
-        activity=this;
-
+        activity = this;
         databaseDoctorDetails=new DatabaseDoctorDetails(this);
 
 
@@ -49,7 +47,6 @@ public class ShowingDoctorDetails extends AppCompatActivity {
             }
         });
 
-
         arrayList= (ArrayList<DoctorDetails>) databaseDoctorDetails.getAllRecords();
 
         listView= (ListView) findViewById(R.id.doc_list_item);
@@ -61,7 +58,6 @@ public class ShowingDoctorDetails extends AppCompatActivity {
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
-
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -71,8 +67,7 @@ public class ShowingDoctorDetails extends AppCompatActivity {
                 return false;
             }
         });
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+ /*       listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(ShowingDoctorDetails.this, ""+position, Toast.LENGTH_SHORT).show();
@@ -80,7 +75,7 @@ public class ShowingDoctorDetails extends AppCompatActivity {
                 Log.d(TAG,"on item Click");
 
             }
-        });
+        });*/
 
         registerForContextMenu(listView);
 
@@ -93,6 +88,7 @@ public class ShowingDoctorDetails extends AppCompatActivity {
         menu.add("Delete");
         Log.d(TAG,"onCreateContextMenu");
     }
+
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         if(item.getTitle().equals("Delete"))
@@ -121,4 +117,5 @@ public class ShowingDoctorDetails extends AppCompatActivity {
         super.onBackPressed();
         finish();
     }
+
 }

@@ -49,11 +49,11 @@ public class DoctorAdapter extends ArrayAdapter {
        // Toast.makeText(activity, "in get View "+position, Toast.LENGTH_SHORT).show();
         TextView name=v.findViewById(R.id.list_doc_name);
         TextView hospital=v.findViewById(R.id.list_doc_hospital);
-        Button button = v.findViewById(R.id.list_doc_call);
+        //Button button = v.findViewById(R.id.list_doc_call);
 
         name.setText(arrayList.get(position).getName());
         hospital.setText(arrayList.get(position).getHospital());
-        button.setOnClickListener(new View.OnClickListener() {
+       /* button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -77,6 +77,6 @@ public class DoctorAdapter extends ArrayAdapter {
                 }
             }
         });
-        return v;
+       */ return v;
     }
 }
