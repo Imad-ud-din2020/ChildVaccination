@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -25,14 +26,16 @@ public class AddChildDetails extends AppCompatActivity {
     int month;
     int day;
     ImageView img,img1;
-    DatabaseChildDetails databaseChildDetails = new DatabaseChildDetails(this);
+    public static DatabaseChildDetails databaseChildDetails;
+    public static DatabaseVaccinationDetails databaseVaccinationDetails;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_child_details);
 
             getSupportActionBar().hide();
-
+        databaseChildDetails = new DatabaseChildDetails(this);
+        databaseVaccinationDetails=new DatabaseVaccinationDetails(this);
          et1 = (EditText) findViewById(R.id.child_name);
          et2 = (EditText) findViewById(R.id.child_phone);
          et3 = (EditText) findViewById(R.id.child_email);
@@ -82,6 +85,8 @@ public class AddChildDetails extends AppCompatActivity {
                     ChildDetails child = new ChildDetails(name,email,phone,dob);
                     databaseChildDetails.addRecord(child);
                     MainActivity.activity.finish();
+                    String Id=dob+"/"+name+"/"+phone+"/"+email;
+                    calculatingSchedule(Id);
                     Intent intent = new Intent(AddChildDetails.this,MainActivity.class);
                     Toast.makeText(AddChildDetails.this, "Press Long To Edit Details Of Child", Toast.LENGTH_SHORT).show();
                     startActivity(intent);
@@ -122,4 +127,142 @@ public class AddChildDetails extends AppCompatActivity {
         super.onBackPressed();
         finish();
     }
+    void add(String Id,String [] al,String time)
+    {
+        for(int i=0;i<al.length;i++)
+        {
+            VaccinationObject obj=new VaccinationObject(Id,al[i],time,"NA","NotGiven");
+            Log.d("VaccineName",al[i]);
+            databaseVaccinationDetails.addRecord(obj);
+        }
+
+    }
+
+    void calculatingSchedule(String Id){
+        String[] al = getResources().getStringArray(R.array.AtBirth);
+        String time="";
+
+        AddChildDetails addVaccine=new AddChildDetails();
+
+        al=getResources().getStringArray(R.array.Week6);
+        time=calculateDate(45);
+        addVaccine.add(Id,al,time);
+
+
+        al=getResources().getStringArray(R.array.Week10);
+        time=calculateDate(75);
+        addVaccine.add(Id,al,time);
+
+        al=getResources().getStringArray(R.array.Week14);
+        time=calculateDate(105);
+        addVaccine.add(Id,al,time);
+
+        al=getResources().getStringArray(R.array.Month6);
+        time=calculateMonth(6);
+        addVaccine.add(Id,al,time);
+
+        al=getResources().getStringArray(R.array.Month9);
+        time=calculateMonth(9);
+        addVaccine.add(Id,al,time);
+
+        al=getResources().getStringArray(R.array.Month12);
+        time=calculateMonth(12);
+        addVaccine.add(Id,al,time);
+
+
+        al=getResources().getStringArray(R.array.Month15);
+        time=calculateMonth(15);
+        addVaccine.add(Id,al,time);
+
+
+        al=getResources().getStringArray(R.array.Month18);
+        time=calculateMonth(18);
+        addVaccine.add(Id,al,time);
+
+        al=getResources().getStringArray(R.array.year2);
+        time=calculateYear(2);
+        addVaccine.add(Id,al,time);
+
+
+        al=getResources().getStringArray(R.array.year4);
+        time=calculateYear(4);
+        addVaccine.add(Id,al,time);
+
+        al=getResources().getStringArray(R.array.year5);
+        time=calculateYear(5);
+        addVaccine.add(Id,al,time);
+
+    }
+
+    String  calculateDate(int days){
+
+
+        int s1[]=new int[3];
+
+        s1[0]=day;
+        s1[1]=month;
+        s1[2]=year;
+
+        s1[0]+=days;
+        int k=s1[0]/30;
+        s1[0]%=31;
+        s1[0]=s1[0]+1;
+
+        s1[1]+=k;
+        k=s1[1]/12;
+        s1[1]%=12;
+        s1[0]=s1[1]+1;
+
+        s1[2]+=k;
+
+        if(s1[1]==2)
+        {
+            if(s1[0] > 28)
+            {
+                s1[0]=s1[0]-28;
+                s1[1]=3;
+            }
+        }
+        else if(s1[1]==4 &&s1[1]==6 && s1[1]==9 &&s1[1]==11  )
+        {
+            if(s1[0]==31)
+            {
+                s1[0]=1;
+                s1[1]+=1;
+            }
+        }
+
+
+        return ""+s1[0]+"/"+s1[1]+"/"+s1[2];
+    }
+
+
+    String  calculateMonth(int month1) {
+        int s1[]=new int[3];
+
+        s1[0]=day;
+        s1[1]=month;
+        s1[2]=year;
+
+        s1[1]+=month1;
+        int k=s1[1]/12;
+        s1[1]%=12;
+
+        s1[2]+=k;
+
+        return ""+s1[0]+"/"+s1[1]+"/"+s1[2];
+    }
+
+    String  calculateYear(int year1) {
+        int s1[]=new int[3];
+
+        s1[0]=day;
+        s1[1]=month;
+        s1[2]=year;
+
+        s1[2]+=year1;
+
+        return ""+s1[0]+"/"+s1[1]+"/"+s1[2];
+    }
+
 }

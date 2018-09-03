@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity
     ListView listView;
     CustomAdapter adapter;
     public static  DatabaseChildDetails databaseChildDetails;
+    public static  DatabaseVaccinationDetails databaseVaccinationDetails;
     public static final String TAG="MAIN";
     int longClickedPosition=-1;
     ArrayList<ChildDetails> al ;
@@ -69,6 +70,9 @@ public class MainActivity extends AppCompatActivity
 
         databaseChildDetails = new DatabaseChildDetails(this);
 
+        databaseVaccinationDetails=new DatabaseVaccinationDetails(this);
+
+
         al= (ArrayList<ChildDetails>) databaseChildDetails.getAllRecords();
 
         Log.d(TAG,"got Object");
@@ -95,7 +99,7 @@ public class MainActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent intent = new Intent(MainActivity.this,VaccinationSchedule.class);
-                intent.putExtra("position",position);
+                intent.putExtra("position",String.valueOf(position));
                 startActivity(intent);
             }
         });
@@ -148,6 +152,7 @@ public class MainActivity extends AppCompatActivity
         if(item.getTitle()=="Delete")
         {
             databaseChildDetails.deleteRecord(al.get(longClickedPosition).getId());
+            databaseVaccinationDetails.deleteRecord(al.get(longClickedPosition).getId());
             al.remove(longClickedPosition);
             adapter.notifyDataSetChanged();
 

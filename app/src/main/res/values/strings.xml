@@ -18,12 +18,91 @@
         <item>DPT(Diphtheria Pertusis Tetanus)</item>
         <item>HiB(Haemophilus Influenzaae Type B)</item>
         <item>Pneumococcoal</item>
-        <item></item>
-        <item></item>
+        <item>IPV(Inactivated Polio Vaccine)</item>
+        <item>Rotavirus</item>
+        <item>Influenza</item>
+        <item>Measles</item>
+        <item>Hepatits A</item>
+        <item>Varicella(Chickenpox)</item>
         <item></item>
         <item></item>
 
     </string-array>
+
+    <string-array name="AtBirth">
+        <item>BCG(Bacillus Calmette Guerin)</item>
+        <item>OPV(Oral Polio Vaccine)</item>
+        <item>HPV(Human Papiloma Virus)</item>
+        <item>Hepatitis B</item>
+    </string-array>
+
+    <string-array name="Week6">
+        <item>DPT(Diphtheria Pertusis Tetanus)</item>
+        <item>Hepatitis B</item>
+        <item>OPV(Oral Polio Vaccine)</item>
+        <item>HiB(Haemophilus Influenzaae Type B)</item>
+        <item>Pneumococcoal</item>
+    </string-array>
+
+    <string-array name="Week10">
+        <item>DPT(Diphtheria Pertusis Tetanus)</item>
+        <item>Hepatitis B</item>
+        <item>OPV(Oral Polio Vaccine)</item>
+        <item>HiB(Haemophilus Influenzaae Type B)</item>
+        <item>Pneumococcoal</item>
+        <item>IPV(Inactivated Polio Vaccine)</item>
+    </string-array>
+
+    <string-array name="Week14">
+        <item>DPT(Diphtheria Pertusis Tetanus)</item>
+        <item>Hepatitis B</item>
+        <item>IPV(Inactivated Polio Vaccine)</item>
+        <item>HiB(Haemophilus Influenzaae Type B)</item>
+        <item>OPV(Oral Polio Vaccine)</item>
+        <item>Pneumococcoal</item>
+    </string-array>
+
+    <string-array name="Month6">
+        <item>Rotavirus</item>
+        <item>Influenza</item>
+        <item>HPV(Human Papiloma Virus)</item>
+    </string-array>
+
+    <string-array name="Month9">
+        <item>Measles</item>
+    </string-array>
+
+    <string-array name="Month12">
+        <item>Varicella(Chickenpox)</item>
+    </string-array>
+
+    <string-array name="Month15">
+        <item>IPV(Inactivated Polio Vaccine)</item>
+        <item>Pneumococcoal Booster</item>
+        <item>MMR(Measles,Mumps,Rubella)</item>
+    </string-array>
+
+    <string-array name="Month18">
+        <item>OPV(Oral Polio Vaccine)</item>
+        <item>HiB(Haemophilus Influenzaae Type B) Booster</item>
+        <item>DPT(Diphtheria Pertusis Tetanus) Booster</item>
+        <item>Hepatits A</item>
+    </string-array>
+
+    <string-array name="year2">
+        <item>Hepatits A</item>
+        <item>Typhoid</item>
+    </string-array>
+
+    <string-array name="year4">
+        <item>MMR(Measles,Mumps,Rubella)</item>
+    </string-array>
+
+    <string-array name="year5">
+        <item>OPV(Oral Polio Vaccine)Booster</item>
+        <item>DPT(Diphtheria Pertusis Tetanus) Booster</item>
+    </string-array>
+
 
     <string-array name="vaccine_detail">
         <item>The BCG vaccine is an anti-tuberculosis vaccine. It is a live attenuated vaccine administered to babies at birth. It is injected into the skin of the outer arm. A small swelling appears around 7 to 10 days
@@ -57,5 +136,45 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+<!--
+    <string-array name="vaccine_name_in_order">
+        <item>BCG</item>
+        <item>OPV-0</item>
+
+        <item>DTP-1</item>
+        <item>IPV-1</item>
+        <item>OPV-1</item>
+        <item>HB-1</item>
+        <item>HIB-1</item>
+        <item>Conjugate Pneumococcal</item>
+        <item>ROTARIX-1</item>
+
+        <item>DTP-2</item>
+        <item>IPV-2</item>
+        <item>OPV-2</item>
+        <item>HB-2</item>
+        <item>HIB-2</item>
+        <item>Conjugate Pneumococcal</item>
+        <item>ROTARIX-2</item>
+
+        <item>DTP-3</item>
+        <item>IPV-3</item>
+        <item>OPV-3</item>
+        <item>HIB-3</item>
+
+        <item>INFLUENZA-1</item>
+
+        <item>INFLUENZA-2</item>
+
+        <item>HB-3</item>
+        <item>OPV-4</item>
+
+        <item>MEASLES</item>
+
+    </string-array>
+-->
+
+
 
 </resources>
