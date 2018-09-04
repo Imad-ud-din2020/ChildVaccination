@@ -2,7 +2,9 @@ package com.example.gauranggoel.childvacination;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +18,7 @@ public class SettingActivity extends AppCompatActivity {
     ImageView img,img1;
     CheckBox ch1,ch2;
     int mail=1,notification=1;
-
+    AlertDialog.Builder alert;
     SharedPreferences shref;
     SharedPreferences.Editor editor;
     @Override
@@ -72,10 +74,32 @@ public class SettingActivity extends AppCompatActivity {
         ch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(ch1.isChecked())
-                    notification=1;
+                if(ch1.isChecked()) {
+                    notification = 1;
+                }
                 else
-                    notification=0;
+                {
+                     alert = new AlertDialog.Builder(SettingActivity.this);
+                    alert.setTitle("Notification");
+                    alert.setMessage("Now you will no longer recieve notifications");
+                    alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            notification=0;
+                            dialog.dismiss();
+                        }
+                    });
+                    alert.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    alert.show();
+
+                }
+
             }
         });
 
@@ -85,7 +109,26 @@ public class SettingActivity extends AppCompatActivity {
                 if(ch2.isChecked())
                     mail=1;
                 else
-                    mail=0;
+                {
+                    alert = new AlertDialog.Builder(SettingActivity.this);
+                    alert.setTitle("Notification");
+                    alert.setMessage("Now you will no longer recieve Mails");
+                    alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            mail=0;
+                            dialog.dismiss();
+                        }
+                    });
+                    alert.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    alert.show();
+                }
             }
         });
 
