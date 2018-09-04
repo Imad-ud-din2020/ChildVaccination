@@ -1,24 +1,27 @@
 package com.example.gauranggoel.childvacination;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class VaccinationSchedule extends AppCompatActivity {
 
-
+Activity activity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vaccination_schedule);
         getSupportActionBar().hide();
-
+        activity=this;
         ImageView img= (ImageView) findViewById(R.id.vaccine_schedule_icon);
         img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,6 +30,7 @@ public class VaccinationSchedule extends AppCompatActivity {
             }
         });
 
+        TextView tv= (TextView) findViewById(R.id.child_name_for_vaccinationSchedule);
 
         Bundle b = getIntent().getExtras();
         int position = Integer.parseInt(b.getString("position"));
@@ -37,9 +41,11 @@ public class VaccinationSchedule extends AppCompatActivity {
 
         String id=al.get(position).getId();
 
+        tv.setText(al.get(position).getName());
+
         DatabaseVaccinationDetails databaseVaccinationDetails = new DatabaseVaccinationDetails(this);
 
-        ArrayList<VaccinationObject> arrayList= (ArrayList<VaccinationObject>) databaseVaccinationDetails.getAllRecords(id);
+        final ArrayList<VaccinationObject> arrayList= (ArrayList<VaccinationObject>) databaseVaccinationDetails.getAllRecords(id);
 
         ListView listView = (ListView) findViewById(R.id.vaccine_list_view);
 
@@ -50,7 +56,10 @@ public class VaccinationSchedule extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(VaccinationSchedule.this, ""+position, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(VaccinationSchedule.this,UpdateVaccinationGivenTimeAndPlace.class);
+                intent.putExtra("id",arrayList.get(position).getId());
+                intent.putExtra("VaccineName",arrayList.get(position).getName());
+                startActivity(intent);
             }
         });
     }

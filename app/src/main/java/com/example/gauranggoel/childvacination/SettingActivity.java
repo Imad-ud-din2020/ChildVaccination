@@ -92,6 +92,7 @@ public class SettingActivity extends AppCompatActivity {
                     alert.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            ch1.setChecked(true);
                             dialog.dismiss();
                         }
                     });
@@ -123,6 +124,7 @@ public class SettingActivity extends AppCompatActivity {
                     alert.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            ch2.setChecked(true);
                             dialog.dismiss();
                         }
                     });
