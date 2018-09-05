@@ -41,7 +41,8 @@ Activity activity;
 
         String id=al.get(position).getId();
 
-        tv.setText(al.get(position).getName());
+        final String userName=al.get(position).getName();
+        tv.setText(userName);
 
         DatabaseVaccinationDetails databaseVaccinationDetails = new DatabaseVaccinationDetails(this);
 
@@ -59,6 +60,7 @@ Activity activity;
                 Intent intent = new Intent(VaccinationSchedule.this,UpdateVaccinationGivenTimeAndPlace.class);
                 intent.putExtra("id",arrayList.get(position).getId());
                 intent.putExtra("VaccineName",arrayList.get(position).getName());
+                intent.putExtra("UserName",userName);
                 startActivity(intent);
             }
         });

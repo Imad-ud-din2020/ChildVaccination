@@ -20,7 +20,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:clickable="true"
-            android:id="@+id/vaccine_schedule_icon"
+            android:id="@+id/vaccine_schedule_icon1"
             android:src="@drawable/ic_arrow_back_black_24dp" />
 
         <TextView
@@ -37,6 +37,7 @@
         android:layout_height="wrap_content"
         android:text="Child Name"
         android:gravity="left"
+        android:id="@+id/child_name_for_VaccineUpdate1"
         android:textSize="30dp" />
 
 <ScrollView

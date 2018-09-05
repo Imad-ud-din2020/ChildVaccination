@@ -123,6 +123,24 @@ public class DatabaseVaccinationDetails extends SQLiteOpenHelper{
         return arrayList;
     }
 
+    public VaccinationObject getSingleRecord(String id,String name){
+
+        Log.d(TAG,"get single record");
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        String query="select * from "+ DATABASE_TABLE + " where " + ID +" = '" + id + "' and "+NAME+ " = '"+name+"';" ;
+
+        Cursor cursor =   db.query(DATABASE_TABLE,new String[]{ID,NAME,SCHEDULE,GIVEN,STATUS},ID + " =?  AND "+NAME+" =? ", new String[]{id,name},null,null,null);
+
+        if(cursor!=null)
+            cursor.moveToFirst();
+
+        VaccinationObject record = new VaccinationObject(cursor.getString(0),cursor.getString(1),cursor.getString(1),cursor.getString(1),cursor.getString(1));
+
+        return record;
+    }
+
     public void deleteRecord(String id){
 
         Log.d(TAG,"on delete");
