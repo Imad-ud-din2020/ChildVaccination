@@ -2,6 +2,7 @@
 package com.example.gauranggoel.childvacination;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +35,7 @@ public class Authentication extends AppCompatActivity {
     FirebaseAuth.AuthStateListener authStateListener;
     Intent intent1;
     public static final String TAG = "auth";
+    ProgressDialog pd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +62,7 @@ public class Authentication extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: ");
+        //        pd=new ProgressDialog(Authentication.this);
                 Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
                 startActivityForResult(intent,101);
             }
@@ -95,6 +98,7 @@ public class Authentication extends AppCompatActivity {
                 Toast.makeText(Authentication.this, ""+3 , Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "onCreate: ");
                 Intent intent = new Intent(Authentication.this, MainActivity.class);
+      //          pd.dismiss();
                 startActivity(intent);
                 finish();
             }
@@ -109,7 +113,8 @@ public class Authentication extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode==101)
-        {
+        {Log.d(TAG, "onActivityResult: ");
+
             GoogleSignInResult googleSignInResult = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
 
             if(googleSignInResult.isSuccess())
@@ -117,6 +122,10 @@ public class Authentication extends AppCompatActivity {
                 GoogleSignInAccount account = googleSignInResult.getSignInAccount();
                 firebaseAuthWithGoogle(account);
              }
+             else{
+                Toast.makeText(Authentication.this, "Login Failed: Please Check Internet Connection", Toast.LENGTH_SHORT).show();
+
+            }
         }
     }
     //private int firebaseAuthWithGoogle(GoogleSignInAccount account){
@@ -130,11 +139,13 @@ public class Authentication extends AppCompatActivity {
                 if(!task.isSuccessful())
                 {
                     Log.d(TAG, "onComplete: ");
+    //                pd.dismiss();
                     Toast.makeText(Authentication.this, "Login Failed"+task, Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Log.d(TAG, "onComplete: else");
-                    Toast.makeText(Authentication.this, ""+task, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(Authentication.this, ""+task, Toast.LENGTH_SHORT).show();
+  //                  pd.dismiss();
                     startActivity(intent1);
                     finish();
                 }

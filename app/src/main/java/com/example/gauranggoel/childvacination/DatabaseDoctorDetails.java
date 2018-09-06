@@ -131,7 +131,7 @@ public class DatabaseDoctorDetails  extends SQLiteOpenHelper{
         if(cursor!=null)
             cursor.moveToFirst();
 
-        DoctorDetails record = new DoctorDetails(cursor.getString(0),cursor.getString(1),cursor.getString(1),cursor.getString(1));
+        DoctorDetails record = new DoctorDetails(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3));
 
         return record;
     }

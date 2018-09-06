@@ -18,26 +18,28 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         getSupportActionBar().hide();
-        firebaseAuth = FirebaseAuth.getInstance();
-        authStateListener = new Authentication().authStateListener();
+     //   firebaseAuth = FirebaseAuth.getInstance();
+      //  authStateListener = new Authentication().authStateListener();
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 Intent intent;
-               // FirebaseUser user = firebaseAuth.getCurrentUser();
+              // FirebaseUser user = firebaseAuth.getCurrentUser();
                 //Toast.makeText(SplashScreen.this, ""+user, Toast.LENGTH_SHORT).show();
-              //  intent= new Intent(SplashScreen.this,Authentication.class);
+                intent= new Intent(SplashScreen.this,Authentication.class);
+/*
 
-                /*if(user!=null) {
+                if(user!=null) {
                     intent= new Intent(SplashScreen.this,Authentication.class);
 
                     Toast.makeText(SplashScreen.this, ""+user.getDisplayName()+user.getEmail(), Toast.LENGTH_SHORT).show();
                 }else{
                    intent= new Intent(SplashScreen.this,MainActivity.class);
                 }
-                */
-                intent= new Intent(SplashScreen.this,MainActivity.class);
+*/
+
+//                intent= new Intent(SplashScreen.this,MainActivity.class);
                 startActivity(intent);
                 finish();
             }

@@ -32,7 +32,6 @@
             android:textStyle="bold"
             android:textSize="30dp"
             android:id="@+id/id"/>
-
     </android.support.v7.widget.Toolbar>
 
     <android.support.design.widget.TextInputLayout

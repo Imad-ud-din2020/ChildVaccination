@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -121,8 +122,9 @@ public class MainActivity extends AppCompatActivity
 
 
         //acessing User details
-        TextView username = (TextView) findViewById(R.id.userName);
-        TextView useremail = (TextView) findViewById(R.id.emailId);
+        View v1 = activity.getLayoutInflater().inflate(R.layout.nav_header_main,null);
+        TextView username = (TextView) v1.findViewById(R.id.userName);
+        TextView useremail = (TextView) v1.findViewById(R.id.emailId);
         firebaseAuth = FirebaseAuth.getInstance();
         authStateListener = new Authentication().authStateListener();
        FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -159,7 +161,7 @@ public class MainActivity extends AppCompatActivity
 
             Log.d(TAG,"delete");
         }
-        else  if(item.getTitle()=="Edit")
+        else  if(item.getTitle()=="Edit Details")
         {
             Intent intent= new Intent(MainActivity.this,EditChildDetails.class);
             ChildDetails child = al.get(longClickedPosition);
