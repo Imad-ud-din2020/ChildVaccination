@@ -131,7 +131,7 @@ public class AddChildDetails extends AppCompatActivity {
     {
         for(int i=0;i<al.length;i++)
         {
-            VaccinationObject obj=new VaccinationObject(Id,al[i],time,"NA","NotGiven");
+            VaccinationObject obj=new VaccinationObject(Id,al[i],time,"","NotGiven");
             Log.d("VaccineName",al[i]);
             databaseVaccinationDetails.addRecord(obj);
         }

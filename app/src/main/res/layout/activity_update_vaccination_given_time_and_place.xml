@@ -149,6 +149,7 @@
                 android:id="@+id/vaccine_fee"
                 android:gravity="left"
                 android:textStyle="bold"
+                android:inputType="number"
                 android:layout_weight="1"
                 android:textSize="20dp" />
 

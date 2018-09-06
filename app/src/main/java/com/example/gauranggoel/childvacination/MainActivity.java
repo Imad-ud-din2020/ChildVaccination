@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity
     int longClickedPosition=-1;
     ArrayList<ChildDetails> al ;
     String[] s;
+    public static int position1=-1;
     public static Activity activity ;
     //this detemine => no. of times get view will be called
     @Override
@@ -93,7 +94,6 @@ public class MainActivity extends AppCompatActivity
 
 
         //event over list view
-
         //on click
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent intent = new Intent(MainActivity.this,VaccinationSchedule.class);
-                intent.putExtra("position",String.valueOf(position));
+                position1=position;
                 startActivity(intent);
             }
         });
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity
         TextView useremail = (TextView) v1.findViewById(R.id.emailId);
         firebaseAuth = FirebaseAuth.getInstance();
         authStateListener = new Authentication().authStateListener();
-       FirebaseUser user = firebaseAuth.getCurrentUser();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
         if(user!=null) {
             String name = user.getDisplayName().toString();
             String email= user.getEmail().toString();
@@ -141,7 +141,6 @@ public class MainActivity extends AppCompatActivity
 
 
     //context menu options
-
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {

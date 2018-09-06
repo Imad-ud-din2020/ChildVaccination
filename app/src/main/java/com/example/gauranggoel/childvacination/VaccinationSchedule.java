@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class VaccinationSchedule extends AppCompatActivity {
 
-Activity activity;
+public static Activity activity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +32,7 @@ Activity activity;
 
         TextView tv= (TextView) findViewById(R.id.child_name_for_vaccinationSchedule);
 
-        Bundle b = getIntent().getExtras();
-        int position = Integer.parseInt(b.getString("position"));
+        int position = MainActivity.position1;
 
         DatabaseChildDetails databaseChildDetails = new DatabaseChildDetails(this);
 

@@ -2,6 +2,7 @@ package com.example.gauranggoel.childvacination;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class UpdateVaccinationGivenTimeAndPlace extends AppCompatActivity {
@@ -28,6 +30,10 @@ public class UpdateVaccinationGivenTimeAndPlace extends AppCompatActivity {
     String given_time;
     AlertDialog.Builder dialog;
 
+
+    int k=0;
+
+    DatabaseVaccinationNotes databaseVaccineNotes;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,10 +41,11 @@ public class UpdateVaccinationGivenTimeAndPlace extends AppCompatActivity {
         getSupportActionBar().hide();
 
         databaseVaccinationDetails= new DatabaseVaccinationDetails(this);
+        databaseVaccineNotes=new DatabaseVaccinationNotes(this);
 
         Bundle b = getIntent().getExtras();
-        String Id = b.getString("id");
-        String vaccine_name = b.getString("VaccineName");
+        final String Id = b.getString("id");
+        final String vaccine_name = b.getString("VaccineName");
         String child_name = b.getString("UserName");
 
         final VaccinationObject vaccinationObject=databaseVaccinationDetails.getSingleRecord(Id,vaccine_name);
@@ -52,6 +59,11 @@ public class UpdateVaccinationGivenTimeAndPlace extends AppCompatActivity {
         vaccine.setText(vaccine_name);
         schedule.setText(vaccinationObject.getScheduleTime());
         childName.setText(child_name);
+        given.setText(vaccinationObject.getGivenTime());
+
+        if(!given.getText().equals(""))
+            k=1;
+
 
        // Toast.makeText(this, ""+vaccinationObject.getName(), Toast.LENGTH_SHORT).show();
        // Toast.makeText(this, ""+vaccinationObject, Toast.LENGTH_SHORT).show();
@@ -65,6 +77,14 @@ public class UpdateVaccinationGivenTimeAndPlace extends AppCompatActivity {
         hospital= (EditText) findViewById(R.id.hospital_name);
         fee= (EditText) findViewById(R.id.vaccine_fee);
         note= (EditText) findViewById(R.id.notes);
+
+        ArrayList<VaccinationNoteObject> arrayList = (ArrayList<VaccinationNoteObject>) databaseVaccineNotes.getAllRecords(Id,vaccine_name);
+        if(arrayList.size()==1)
+        {
+            fee.setText(arrayList.get(0).getFee());
+            hospital.setText(arrayList.get(0).getHospital());
+            note.setText(arrayList.get(0).getNotes());
+        }
 
         btn1= (Button) findViewById(R.id.vaccine_update);
         btn2= (Button) findViewById(R.id.vaccine_cancel);
@@ -134,6 +154,34 @@ public class UpdateVaccinationGivenTimeAndPlace extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //update code goes here
+
+                String fee1=fee.getText().toString();
+                String hospital1=hospital.getText().toString();
+                String note1=note.getText().toString();
+                String given1=given.getText().toString();
+
+                if(!given.equals(""))
+                {
+                    VaccinationNoteObject vaccinationNoteObject=new VaccinationNoteObject(Id,vaccine_name,fee1,hospital1,note1);
+
+                    if(k==0)
+                        databaseVaccineNotes.addRecord(vaccinationNoteObject);
+                    else
+                        databaseVaccineNotes.updateRecord(vaccinationNoteObject);
+
+                    VaccinationObject vaccination = new VaccinationObject(vaccinationObject.getId(),vaccinationObject.getName(),schedule.getText().toString(),given_time,"Given");
+
+                    databaseVaccinationDetails.updateRecord(vaccination);
+
+                    VaccinationSchedule.activity.finish();
+                    Intent intent = new Intent(UpdateVaccinationGivenTimeAndPlace.this,VaccinationSchedule.class);
+                    startActivity(intent);
+
+                }else{
+                    Toast.makeText(UpdateVaccinationGivenTimeAndPlace.this, "Must Update Vaccination Given Time", Toast.LENGTH_SHORT).show();
+                }
+
+
             }
         });
     }
@@ -153,12 +201,7 @@ public class UpdateVaccinationGivenTimeAndPlace extends AppCompatActivity {
 
         @Override
         public void onDateSet(DatePicker view, int year1, int month1, int day1) {
-
-            given_time=day1+"/"+month1+"/"+year1;
-            year=year1;
-            day=day1;
-            month=month1;
-            given.setText(given_time);
+            schedule.setText(""+day1+"/"+month1+"/"+year1);
         }
     };
 
