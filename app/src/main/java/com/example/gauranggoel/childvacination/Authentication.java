@@ -41,6 +41,8 @@ public class Authentication extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
 
+        pd= new ProgressDialog(Authentication.this);
+
         signInButton = (SignInButton) findViewById(R.id.signIn);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -64,6 +66,12 @@ public class Authentication extends AppCompatActivity {
                 Log.d(TAG, "onClick: ");
         //        pd=new ProgressDialog(Authentication.this);
                 Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+
+                pd.setTitle("Authentication");
+                pd.setMessage("Processing...");
+                pd.setCanceledOnTouchOutside(true);
+                pd.show();
+
                 startActivityForResult(intent,101);
             }
         });

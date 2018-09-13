@@ -18,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +50,34 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         activity= this;
+
+        View v1 = getLayoutInflater().inflate(R.layout.nav_header_main,null);
+        Toast.makeText(activity, ""+v1, Toast.LENGTH_SHORT).show();
+        TextView username = (TextView) v1.findViewById(R.id.userName);
+        TextView useremail = (TextView) v1.findViewById(R.id.emailId);
+        ImageView img=v1.findViewById(R.id.imageView);
+        firebaseAuth = FirebaseAuth.getInstance();
+        authStateListener = new Authentication().authStateListener();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if(user!=null) {
+            String name = user.getDisplayName().toString();
+            String email= user.getEmail().toString();
+            Toast.makeText(MainActivity.this, name+"\n"+email, Toast.LENGTH_SHORT).show();
+            username.setText(name);
+            useremail.setText(email);
+        }
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Hello", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+        /*testing for alarm*/
+        //Intent intent = new Intent(MainActivity.this,ReminderInCalender.class);
+        //startActivity(intent);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -122,20 +151,6 @@ public class MainActivity extends AppCompatActivity
 
 
         //acessing User details
-        View v1 = activity.getLayoutInflater().inflate(R.layout.nav_header_main,null);
-        TextView username = (TextView) v1.findViewById(R.id.userName);
-        TextView useremail = (TextView) v1.findViewById(R.id.emailId);
-        firebaseAuth = FirebaseAuth.getInstance();
-        authStateListener = new Authentication().authStateListener();
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        if(user!=null) {
-            String name = user.getDisplayName().toString();
-            String email= user.getEmail().toString();
-            Toast.makeText(MainActivity.this, name+"\n"+email, Toast.LENGTH_SHORT).show();
-            username.setText(name);
-            useremail.setText(email);
-        }
-
 
     }
 
@@ -227,9 +242,10 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         Intent intent = null;
-        if (id == R.id.nav_home) {
+       /* if (id == R.id.nav_home) {
 
-        } else if (id == R.id.nav_addchildDetails) {
+        } else */
+       if (id == R.id.nav_addchildDetails) {
              intent = new Intent(MainActivity.this,AddChildDetails.class);
 
         } else if (id == R.id.nav_doctor) {

@@ -74,13 +74,6 @@ AutoCompleteTextView autoCompleteTextView;
 
 
 
-        FloatingActionButton fab1 = (FloatingActionButton) v.findViewById(R.id.addingVaccineDetails);
-        fab1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
 
         listView = v.findViewById(R.id.listViewShowingDetails);
         ArrayAdapter adapter1= new ArrayAdapter(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1,al);

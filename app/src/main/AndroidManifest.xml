@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
 <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/child"
@@ -32,6 +34,11 @@
         <activity android:name=".VaccinationSchedule" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".UpdateVaccinationGivenTimeAndPlace"></activity>
+        <service
+            android:name=".ReminderInCalender"
+            android:enabled="true"
+            android:exported="true">
+        </service>
     </application>
 
 </manifest>
