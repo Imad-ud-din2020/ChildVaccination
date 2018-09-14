@@ -104,7 +104,7 @@ public class UpdateVaccinationGivenTimeAndPlace extends AppCompatActivity {
         year = cal.get(Calendar.YEAR);
         month = cal.get(Calendar.MONTH);
         day = cal.get(Calendar.DAY_OF_MONTH);
-        given_time=day+"/"+month+"/"+year;
+        given_time=day+"/"+(month+1)+"/"+year;
 
         img2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,10 +190,10 @@ public class UpdateVaccinationGivenTimeAndPlace extends AppCompatActivity {
         @Override
         public void onDateSet(DatePicker view, int year1, int month1, int day1) {
 
-            given_time=day1+"/"+month1+"/"+year1;
+            given_time=day1+"/"+(month1+1)+"/"+year1;
             year=year1;
             day=day1;
-            month=month1;
+            month=month1+1;
             given.setText(given_time);
         }
     };
@@ -201,7 +201,7 @@ public class UpdateVaccinationGivenTimeAndPlace extends AppCompatActivity {
 
         @Override
         public void onDateSet(DatePicker view, int year1, int month1, int day1) {
-            schedule.setText(""+day1+"/"+month1+"/"+year1);
+            schedule.setText(""+day1+"/"+(month1+1)+"/"+year1);
         }
     };
 

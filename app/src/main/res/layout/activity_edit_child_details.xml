@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.gauranggoel.childvacination.EditChildDetails"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#e783bc">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/my_toolbar"

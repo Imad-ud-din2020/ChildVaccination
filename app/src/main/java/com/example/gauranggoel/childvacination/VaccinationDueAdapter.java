@@ -1,6 +1,7 @@
 package com.example.gauranggoel.childvacination;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -41,6 +42,9 @@ public class VaccinationDueAdapter extends ArrayAdapter {
         name.setText(arrayList.get(position).getName());
         schedule.setText(arrayList.get(position).getScheduleTime());
         given.setText(arrayList.get(position).getGivenTime());
+
+        if(arrayList.get(position).getStatus().equals("Given"))
+            status.setTextColor(Color.GREEN);
         status.setText(arrayList.get(position).getStatus());
 
         return v;

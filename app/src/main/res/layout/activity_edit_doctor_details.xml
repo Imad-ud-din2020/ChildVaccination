@@ -5,7 +5,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="com.example.gauranggoel.childvacination.EditDoctorDetails">
+        tools:context="com.example.gauranggoel.childvacination.EditDoctorDetails"
+        android:background="#e49c0c">
 
 
         <android.support.v7.widget.Toolbar

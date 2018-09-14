@@ -3,13 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.gauranggoel.childvacination.VaccineDetailDescription"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#e783bc">
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/HeaderBar"
-        android:background="@android:color/holo_blue_bright"
+        android:background="#e49c0c"
         android:elevation="4dp"
         tools:layout_editor_absoluteY="0dp"
         tools:layout_editor_absoluteX="8dp">
@@ -46,6 +47,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:text="Vaccine Description"
+        android:textColor="#450d0d"
         android:id="@+id/vaccineDescription"/>
 
 </LinearLayout>

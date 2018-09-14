@@ -146,10 +146,10 @@ public class EditChildDetails extends AppCompatActivity {
         @Override
         public void onDateSet(DatePicker view, int year1, int month1, int day1) {
 
-            dob=day1+"/"+month1+"/"+year1;
+            dob=day1+"/"+(month1+1)+"/"+year1;
             year=year1;
             day=day1;
-            month=month1;
+            month=month1+1;
             et4.setText(dob);
         }
     };

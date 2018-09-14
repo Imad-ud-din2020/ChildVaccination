@@ -50,7 +50,7 @@ public class AddChildDetails extends AppCompatActivity {
         month = cal.get(Calendar.MONTH);
         day = cal.get(Calendar.DAY_OF_MONTH);
 
-        dob=day+"/"+month+"/"+year;
+        dob=day+"/"+(month+1)+"/"+year;
 
         et4.setText(dob);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -114,10 +114,10 @@ public class AddChildDetails extends AppCompatActivity {
         @Override
         public void onDateSet(DatePicker view, int year1, int month1, int day1) {
 
-            dob=day1+"/"+month1+"/"+year1;
+            dob=day1+"/"+(month1+1)+"/"+year1;
             year=year1;
             day=day1;
-            month=month1;
+            month=month1+1;
             et4.setText(dob);
         }
     };

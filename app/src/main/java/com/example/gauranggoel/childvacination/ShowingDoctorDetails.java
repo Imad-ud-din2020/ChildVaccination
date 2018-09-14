@@ -103,7 +103,7 @@ public class ShowingDoctorDetails extends AppCompatActivity {
 
             Log.d(TAG,"delete");
         }
-        else  if(item.getTitle().equals("Edit"))
+        else  if(item.getTitle().equals("Edit Details"))
         {
             Intent intent= new Intent(ShowingDoctorDetails.this,EditDoctorDetails.class);
             DoctorDetails doctor = arrayList.get(longClickedPosition);
